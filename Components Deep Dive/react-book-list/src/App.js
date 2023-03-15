@@ -1,3 +1,4 @@
+import { BookList } from './components/BookList';
 import './App.css';
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
     return (
         <div className="App">
             <header className="App-header">
+                <BookList books={books} />
             </header>
         </div>
     );
