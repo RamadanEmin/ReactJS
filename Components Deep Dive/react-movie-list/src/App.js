@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import MovieList from './components/MovieList.js';
 
 function App() {
     const [movies, setMovies] = useState([]);
@@ -22,8 +23,14 @@ function App() {
     };
 
     return (
+        <>
             <h1>Movie collection</h1>
-           
+            <MovieList
+                movies={movies}
+                onMoviedelete={onMoviedelete}
+                onMovieSelect={onMovieSelect}
+            />
+        </>
     );
 }
 
