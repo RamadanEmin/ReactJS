@@ -6,6 +6,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import CreateGame from './components/CreateGame';
 import EditGame from './components/EditGame';
+import GameCatalog from './components/GameCatalog/GameCatalog';
 import Errorpage from './components/ErrorPage';
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
 
         const routes = {
             'home': <WelcomeWorld navigationChangeHandler={navigationChangeHandler}/>,
+            'games': <GameCatalog navigationChangeHandler={navigationChangeHandler} />,
             'create-game': <CreateGame />,
             'login': <Login />,
             'register': <Register />,
