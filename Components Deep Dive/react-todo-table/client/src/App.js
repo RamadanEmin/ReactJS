@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 
 import Loading from './components/Loading';
 import Header from './components/Header';
+import Footer from './components/Footer';
 import TodoList from './components/TodoList';
 
 function App() {
@@ -26,6 +27,10 @@ function App() {
         setTodos(state => [newTask, ...state]);
     };
 
+    const toggleTodoStatus = (id) => {
+        setTodos(state => state.map(t => t.id === id ? ({ ...t, isCompleted: !t.isCompleted }) : t));
+    };
+
     return (
         <div>
             <Header />
@@ -48,6 +53,7 @@ function App() {
                 </section>
             </main>
 
+            <Footer />
         </div>
     );
 }

@@ -1,3 +1,5 @@
+import Todo from './Todo';
+
 export default function TodoList({
     todos,
     toggleTodoStatus,
