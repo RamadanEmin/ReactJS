@@ -6,6 +6,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import CreateGame from './components/CreateGame';
 import EditGame from './components/EditGame';
+import GameDetails from './components/GameDetails';
 import GameCatalog from './components/GameCatalog/GameCatalog';
 import Errorpage from './components/ErrorPage';
 
@@ -28,6 +29,7 @@ function App() {
             'create-game': <CreateGame />,
             'login': <Login />,
             'register': <Register />,
+            'details': <GameDetails id={argument} />,
             'edit': <EditGame id={argument} />
         };
 
