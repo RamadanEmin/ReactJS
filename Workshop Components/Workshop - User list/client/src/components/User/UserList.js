@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import {
+  create,
   getAll,
   getOne,
 } from '../../services/userServices';
-
+import { CreateUser } from './CreateUser';
 import { UserItem } from './UserItem';
 import { UserActions } from './UserListConstant';
 
@@ -25,8 +26,24 @@ export const UserList = () => {
       });
   };
 
+  const closeHandler = () => {
+    setUserAction({ user: null, action: null });
+  };
+
+  const userCreatehandler = (userData) => {
+    create(userData)
+      .then((u) => {
+        setUser((oldU) => [...oldU, u]);
+        closeHandler();
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <div className="table-wrapper">
+      {userAction.action === UserActions.Add && (
+        <CreateUser onClose={closeHandler} onUserCreate={userCreatehandler} />
+      )}
 
       <table className="table">
         <thead>
