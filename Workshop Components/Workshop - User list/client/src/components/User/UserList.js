@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
 import {
   create,
+  deleteById,
   getAll,
   getOne,
 } from '../../services/userServices';
 import { CreateUser } from './CreateUser';
+import { DeleteUser } from './DeleteUser';
 import { DetailUser } from './DetailsUser';
 import { UserItem } from './UserItem';
 import { UserActions } from './UserListConstant';
@@ -40,10 +42,25 @@ export const UserList = () => {
       .catch((err) => console.log(err));
   };
 
+  function userDeleteHanlder(userId) {
+    deleteById(userId).then((user) => {
+      setUser((oldU) => [...oldU.filter((u) => u._id !== userId)]);
+      closeHandler();
+    });
+  }
+
   return (
     <div className="table-wrapper">
       {userAction.action === UserActions.Details && (
         <DetailUser user={userAction.user} onClose={closeHandler} />
+      )}
+
+      {userAction.action === UserActions.Delete && (
+        <DeleteUser
+          user={userAction.user}
+          onClose={closeHandler}
+          userDeleteHanlder={() => userDeleteHanlder(userAction.user._id)}
+        />
       )}
 
       {userAction.action === UserActions.Add && (
