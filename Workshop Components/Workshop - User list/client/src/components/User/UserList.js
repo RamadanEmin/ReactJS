@@ -5,6 +5,7 @@ import {
   getOne,
 } from '../../services/userServices';
 import { CreateUser } from './CreateUser';
+import { DetailUser } from './DetailsUser';
 import { UserItem } from './UserItem';
 import { UserActions } from './UserListConstant';
 
@@ -41,6 +42,10 @@ export const UserList = () => {
 
   return (
     <div className="table-wrapper">
+      {userAction.action === UserActions.Details && (
+        <DetailUser user={userAction.user} onClose={closeHandler} />
+      )}
+
       {userAction.action === UserActions.Add && (
         <CreateUser onClose={closeHandler} onUserCreate={userCreatehandler} />
       )}
