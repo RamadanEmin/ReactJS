@@ -36,3 +36,17 @@ export const deleteById = async (userId) => {
 
   return result;
 };
+
+export const edit = async (user, userId) => {
+  const response = await fetch(`${url}/${userId}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(user),
+  });
+
+  const result = await response.json();
+
+  return result.user;
+};

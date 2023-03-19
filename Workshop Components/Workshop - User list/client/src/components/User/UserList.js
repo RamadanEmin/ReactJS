@@ -2,11 +2,13 @@ import { useEffect, useState } from 'react';
 import {
   create,
   deleteById,
+  edit,
   getAll,
   getOne,
 } from '../../services/userServices';
 import { CreateUser } from './CreateUser';
 import { DeleteUser } from './DeleteUser';
+import { EditUser } from './EditUser';
 import { DetailUser } from './DetailsUser';
 import { UserItem } from './UserItem';
 import { UserActions } from './UserListConstant';
@@ -49,6 +51,15 @@ export const UserList = () => {
     });
   }
 
+  function userEditHandler(userData, userId) {
+    edit(userData, userId).then((user) => {
+      setUser((oldUsers) => [
+        ...oldUsers.map((u) => (u._id !== userId ? u : user)),
+      ]);
+      closeHandler();
+    });
+  }
+
   return (
     <div className="table-wrapper">
       {userAction.action === UserActions.Details && (
@@ -60,6 +71,14 @@ export const UserList = () => {
           user={userAction.user}
           onClose={closeHandler}
           userDeleteHanlder={() => userDeleteHanlder(userAction.user._id)}
+        />
+      )}
+
+      {userAction.action === UserActions.Edit && (
+        <EditUser
+          user={userAction.user}
+          onClose={closeHandler}
+          userEditHandler={userEditHandler}
         />
       )}
 
