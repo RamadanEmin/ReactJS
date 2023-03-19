@@ -13,6 +13,9 @@ const Navigation = () => {
         <li>
           <NavLink to="/" className={setNavStyle}>Home</NavLink>
         </li>
+        <li>
+          <NavLink to="/about" className={setNavStyle} >About</NavLink>
+        </li>
       </ul>
     </nav>
   );
