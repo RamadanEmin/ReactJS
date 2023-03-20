@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, Route, Routes, useNavigate, useParams } from 'react-router-dom';
+import Film from './Film';
 
 const Person = () => {
   const { personId } = useParams();
@@ -29,6 +30,12 @@ const Person = () => {
           </li>
         )}
       </ul>
+
+      <section>
+        <Routes>
+          <Route path="films/:filmId" element={<Film films={person.films || []} />} />
+        </Routes>
+      </section>
     </>
   );
 };
