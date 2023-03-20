@@ -22,6 +22,9 @@ const Navigation = () => {
         <li>
           <NavLink to="/pricing/premium" className={setNavStyle} >Premium Pricing</NavLink>
         </li>
+        <li>
+          <NavLink to="/people" className={setNavStyle} >People</NavLink>
+        </li>
       </ul>
     </nav>
   );
