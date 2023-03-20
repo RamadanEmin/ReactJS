@@ -16,6 +16,12 @@ const Navigation = () => {
         <li>
           <NavLink to="/about" className={setNavStyle} >About</NavLink>
         </li>
+        <li>
+          <NavLink to="/pricing" className={setNavStyle} >Pricing</NavLink>
+        </li>
+        <li>
+          <NavLink to="/pricing/premium" className={setNavStyle} >Premium Pricing</NavLink>
+        </li>
       </ul>
     </nav>
   );

@@ -4,6 +4,7 @@ import About from './components/About';
 import Home from './components/Home';
 import Navigation from './components/Navigation';
 import NotFound from './components/NotFound';
+import Pricing from './components/Pricing';
 
 function App() {
   return (
@@ -14,6 +15,8 @@ function App() {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/about' element={<About />} />
+          <Route path='/pricing/*' element={<Pricing />} />
+          <Route path='/pricing/premium' element={<About />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
       </header>
