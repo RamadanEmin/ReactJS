@@ -25,6 +25,9 @@ const Navigation = () => {
         <li>
           <NavLink to="/people" className={setNavStyle} >People</NavLink>
         </li>
+        <li>
+          <NavLink to="/owen-lars" className={setNavStyle} >Owen Lars</NavLink>
+        </li>
       </ul>
     </nav>
   );
