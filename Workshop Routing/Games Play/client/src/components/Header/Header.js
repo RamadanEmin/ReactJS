@@ -17,6 +17,7 @@ const Header = () => {
                 {/* Guest users */}
                 <div id="guest">
                     <Link to="/login">Login</Link>
+                    <Link to="/register">Register</Link>
                 </div>
             </nav>
         </header>
