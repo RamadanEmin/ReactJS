@@ -9,6 +9,7 @@ import Home from './components/Home/Home';
 import Login from './components/Login/Login';
 import CreateGame from './components/CreateGame/CreateGame';
 import Catalog from './components/Catalog/Catalog';
+import GameDetails from './components/GameDetails/GameDetails';
 import './App.css';
 
 const Register = lazy(() => import('./components/Register/Register'));
@@ -16,6 +17,17 @@ const Register = lazy(() => import('./components/Register/Register'));
 function App() {
   const [games, setGames] = useState([]);
   const navigate = useNavigate();
+
+  const addComment = (gameId, comment) => {
+    setGames((state) => {
+      const game = state.find((x) => x._id === gameId);
+
+      const comments = game.comments || [];
+      comments.push(comment);
+
+      return [...state.filter((x) => x._id !== gameId), { ...game, comments }];
+    });
+  };
 
   const addGameHandler = (gameData) => {
     setGames((state) => [
@@ -57,6 +69,10 @@ function App() {
             element={<CreateGame addGameHandler={addGameHandler} />}
           />
           <Route path="/catalog" element={<Catalog games={games} />} />
+          <Route
+            path="/catalog/:gameId"
+            element={<GameDetails games={games} addComment={addComment} />}
+          />
         </Routes>
       </main>
     </div>
