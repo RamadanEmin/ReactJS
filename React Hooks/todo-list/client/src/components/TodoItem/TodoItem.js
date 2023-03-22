@@ -10,7 +10,7 @@ const TodoItem = ({ todo }) => {
   const { values, changeHanlder } = useChangeHanlder({
     title: todo.title
   });
-  const { editTodoHanlder} = useContext(TodoContext);
+  const { editTodoHanlder, deleteTodoHanlder } = useContext(TodoContext);
 
   useEffect(() => {
     console.log('mount');
@@ -35,11 +35,8 @@ const TodoItem = ({ todo }) => {
           <input type="submit" value='save' />
         </form>
         : <>
-          <span style={{ textDecoration: todo.isMarked ? 'line-through' : '' }} >
-            {todo.title}
-          </span>
           <button className={`btn ${styles['edit-btn']}`} onClick={() => setEditMode(true)}>edit</button >
-          <button className={`btn ${styles['delete-btn']}`} >delete</button>
+          <button className={`btn ${styles['delete-btn']}`} onClick={() => deleteTodoHanlder(todo._id)}>delete</button>
           <button className={`btn ${styles['mark-btn']}`} >mark</button>
         </>
       }

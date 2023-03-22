@@ -7,7 +7,7 @@ import './App.css';
 
 function App() {
   const [todos, setTodos, isLoading] = useFetch('http://localhost:3030/jsonstore/todos');
-  const { createTodo, editTodo } = useTodoApi();
+  const { createTodo, editTodo, deleteTodo } = useTodoApi();
 
   const createTodoHandler = async (todoData) => {
     try {
@@ -30,8 +30,19 @@ function App() {
     }
   };
 
+  const deleteTodoHanlder = async (todoId) => {
+    try {
+      await deleteTodo(todoId);
+      setTodos(state => [
+        ...state.filter(t => t._id !== todoId)
+      ]);
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
   return (
-    <TodoContext.Provider value={{ editTodoHanlder}}>
+    <TodoContext.Provider value={{ editTodoHanlder, deleteTodoHanlder }}>
       <div className='todos'>
         <h1 className="title" >TODO APP</h1>
 
