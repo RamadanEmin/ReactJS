@@ -41,8 +41,17 @@ function App() {
     }
   };
 
+  const markTodoHanlder = async (todoData) => {
+    try {
+      const editedTodo = await editTodo({ ...todoData, isMarked: !todoData.isMarked });
+      setTodos(state => state.map(t => t._id === editedTodo._id ? editedTodo : t));
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
   return (
-    <TodoContext.Provider value={{ editTodoHanlder, deleteTodoHanlder }}>
+    <TodoContext.Provider value={{ editTodoHanlder, deleteTodoHanlder, markTodoHanlder }}>
       <div className='todos'>
         <h1 className="title" >TODO APP</h1>
 
