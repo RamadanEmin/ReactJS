@@ -19,18 +19,18 @@ const TodoItem = ({ todo }) => {
 
   return (
     <li>
-        ? <form >
-          <input type="text" name='title' value={values.title} onChange={changeHanlder} />
-          <input type="submit" value='save' />
-        </form>
-        : <>
-          <span style={{ textDecoration: todo.isMarked ? 'line-through' : '' }} >
-            {todo.title}
-          </span>
-          <button className={`btn ${styles['edit-btn']}`} >edit</button >
-          <button className={`btn ${styles['delete-btn']}`} >delete</button>
-          <button className={`btn ${styles['mark-btn']}`} >mark</button>
-        </>
+      <form >
+        <input type="text" name='title' value={values.title} onChange={changeHanlder} />
+        <input type="submit" value='save' />
+      </form>
+      <>
+        <span style={{ textDecoration: todo.isMarked ? 'line-through' : '' }} >
+          {todo.title}
+        </span>
+        <button className={`btn ${styles['edit-btn']}`} >edit</button >
+        <button className={`btn ${styles['delete-btn']}`} >delete</button>
+        <button className={`btn ${styles['mark-btn']}`} >mark</button>
+      </>
     </li >
   );
 };

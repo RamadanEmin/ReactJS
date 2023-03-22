@@ -8,23 +8,8 @@ const useTodoApi = () => {
     }).then(res => res.json());
   };
 
-  const editTodo = (todo) => {
-    return fetch(`${url}/${todo._id}`, {
-      method: 'PUT',
-      body: JSON.stringify(todo)
-    }).then(res => res.json());
-  };
-
-  const deleteTodo = (todoId) => {
-    return fetch(`${url}/${todoId}`, {
-      method: 'DELETE'
-    }).then(res => res.json());
-  };
-
   return {
     createTodo,
-    editTodo,
-    deleteTodo
   };
 };
 
