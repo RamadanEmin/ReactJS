@@ -1,4 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
+import PetList from '../PetList/PetList';
 
 const Dashboard = () => {
     return (

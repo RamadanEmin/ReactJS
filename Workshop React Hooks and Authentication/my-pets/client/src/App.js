@@ -15,7 +15,7 @@ function App() {
     const [user, setUser] = useLocalStorage('user', initialAuthState);
 
     return (
-        <AuthContext.Provider value={{ user}}>
+        <AuthContext.Provider value={{ user }}>
             <div id="container">
 
                 <Header />
