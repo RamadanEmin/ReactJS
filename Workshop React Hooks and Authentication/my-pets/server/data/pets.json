@@ -1,0 +1,18 @@
+{
+    "1": {
+        "name": "Milo",
+        "type": "dog",
+        "imageUrl": "https://www.meme-arsenal.com/memes/3a545146275fe7ac3dbbfd739ed7ad61.jpg",
+        "description": "Milo the dog",
+        "likes": 0,
+        "_id": "1"
+    },
+    "2": {
+        "name": "Leq",
+        "type": "cat",
+        "imageUrl": "https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F47%2F2020%2F08%2F02%2Frussian-blue-cat-175701659-2000.jpg",
+        "description": "Leq the cat",
+        "likes": 0,
+        "_id": "2"
+    }
+}
