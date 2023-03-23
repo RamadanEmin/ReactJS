@@ -4,6 +4,7 @@ import { AuthContext } from './contexts/AuthContext';
 import useLocalStorage from './hooks/useLocalStorage';
 import Header from './components/Header';
 import Dashboard from './components/Dashboard';
+import Login from './components/Login';
 
 const initialAuthState = {
     _id: '',
@@ -14,8 +15,12 @@ const initialAuthState = {
 function App() {
     const [user, setUser] = useLocalStorage('user', initialAuthState);
 
+    const login = (authData) => {
+        setUser(authData);
+    };
+
     return (
-        <AuthContext.Provider value={{ user }}>
+        <AuthContext.Provider value={{ user, login }}>
             <div id="container">
 
                 <Header />
@@ -23,6 +28,7 @@ function App() {
                 <main id="site-content">
                     <Routes>
                         <Route path='/dashboard/*' element={<Dashboard />} />
+                        <Route path='/login' element={<Login />} />
                     </Routes>
                 </main>
 
