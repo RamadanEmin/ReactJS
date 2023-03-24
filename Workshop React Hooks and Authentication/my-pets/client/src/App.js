@@ -8,6 +8,7 @@ import Login from './components/Login';
 import Logout from './components/Logout';
 import Register from './components/Register';
 import Create from './components/Create';
+import Edit from './components/Edit/';
 
 const initialAuthState = {
     _id: '',
@@ -39,6 +40,7 @@ function App() {
                         <Route path='/logout' element={<Logout />} />
                         <Route path='/register' element={<Register />} />
                         <Route path='/create' element={<Create />} />
+                        <Route path='/edit/:petId' element={<Edit />} />
                     </Routes>
                 </main>
 
