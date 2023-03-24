@@ -9,6 +9,7 @@ import Logout from './components/Logout';
 import Register from './components/Register';
 import MyPets from './components/MyPets';
 import Create from './components/Create';
+import Details from './components/Details';
 import Edit from './components/Edit/';
 
 const initialAuthState = {
@@ -42,6 +43,7 @@ function App() {
                         <Route path='/register' element={<Register />} />
                         <Route path='/my-pets' element={<MyPets />} />
                         <Route path='/create' element={<Create />} />
+                        <Route path='/details/:petId' element={<Details />} />
                         <Route path='/edit/:petId' element={<Edit />} />
                     </Routes>
                 </main>
