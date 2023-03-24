@@ -7,6 +7,7 @@ import Dashboard from './components/Dashboard';
 import Login from './components/Login';
 import Logout from './components/Logout';
 import Register from './components/Register';
+import MyPets from './components/MyPets';
 import Create from './components/Create';
 import Edit from './components/Edit/';
 
@@ -39,6 +40,7 @@ function App() {
                         <Route path='/login' element={<Login />} />
                         <Route path='/logout' element={<Logout />} />
                         <Route path='/register' element={<Register />} />
+                        <Route path='/my-pets' element={<MyPets />} />
                         <Route path='/create' element={<Create />} />
                         <Route path='/edit/:petId' element={<Edit />} />
                     </Routes>
