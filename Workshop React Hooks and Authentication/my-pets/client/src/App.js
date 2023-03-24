@@ -7,6 +7,7 @@ import Dashboard from './components/Dashboard';
 import Login from './components/Login';
 import Logout from './components/Logout';
 import Register from './components/Register';
+import Create from './components/Create';
 
 const initialAuthState = {
     _id: '',
@@ -37,6 +38,7 @@ function App() {
                         <Route path='/login' element={<Login />} />
                         <Route path='/logout' element={<Logout />} />
                         <Route path='/register' element={<Register />} />
+                        <Route path='/create' element={<Create />} />
                     </Routes>
                 </main>
 
