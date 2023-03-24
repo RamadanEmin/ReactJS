@@ -5,6 +5,7 @@ import useLocalStorage from './hooks/useLocalStorage';
 import Header from './components/Header';
 import Dashboard from './components/Dashboard';
 import Login from './components/Login';
+import Logout from './components/Logout';
 import Register from './components/Register';
 
 const initialAuthState = {
@@ -20,8 +21,12 @@ function App() {
         setUser(authData);
     };
 
+    const logout = () => {
+        setUser(initialAuthState);
+    };
+
     return (
-        <AuthContext.Provider value={{ user, login }}>
+        <AuthContext.Provider value={{ user, login, logout }}>
             <div id="container">
 
                 <Header />
@@ -30,6 +35,7 @@ function App() {
                     <Routes>
                         <Route path='/dashboard/*' element={<Dashboard />} />
                         <Route path='/login' element={<Login />} />
+                        <Route path='/logout' element={<Logout />} />
                         <Route path='/register' element={<Register />} />
                     </Routes>
                 </main>
