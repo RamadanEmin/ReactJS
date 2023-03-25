@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import TaskItem from './TaskItem';
 import withRouter from '../hoc/withRouter';
 import { TaskContext } from '../contexts/TaskContext';
 
