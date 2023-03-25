@@ -1,4 +1,5 @@
 import './App.css';
+import RandomJoke from './components/RandomJoke';
 import ErrorBoundary from './components/common/ErrorBoundary';
 
 function App() {
@@ -6,7 +7,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <ErrorBoundary>
-         
+          <RandomJoke />
         </ErrorBoundary>
 
         <a
