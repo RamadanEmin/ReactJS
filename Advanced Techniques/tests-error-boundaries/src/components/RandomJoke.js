@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import JokeArticle from './JokeArticle';
 
 const RandomJoke = () => {
   const [joke, setJoke] = useState({});
