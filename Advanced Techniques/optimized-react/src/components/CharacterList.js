@@ -1,4 +1,5 @@
 import { useCallback, useMemo, useState } from "react";
+import CharacterItem from "./CharacterItem";
 
 function wait(ms) {
   var start = Date.now(),
