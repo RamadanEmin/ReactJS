@@ -1,6 +1,8 @@
 import { useContext } from 'react';
 import { GameContext } from '../../contexts/GameContext';
 
+import LatestGame from './LatestGame/LatestGame';
+
 const Home = () => {
     const { games } = useContext(GameContext);
 
