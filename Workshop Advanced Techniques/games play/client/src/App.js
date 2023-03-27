@@ -1,5 +1,7 @@
 import { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './contexts/AuthContext';
+import { GameProvider } from './contexts/GameContext';
 import './App.css';
 
 import Header from './components/Header';
@@ -7,6 +9,7 @@ import Home from './components/Home';
 import Login from './components/Login';
 import Logout from './components/Logout';
 import Catalog from './components/Catalog';
+import CreateGame from './components/CreateGame';
 import Footer from './components/Footer';
 
 const Register = lazy(() => import('./components/Register'));
@@ -14,27 +17,32 @@ const Register = lazy(() => import('./components/Register'));
 function App() {
 
     return (
-        <div id="box">
+        <AuthProvider>
+            <div id="box">
 
-            <Header />
+                <Header />
 
-            <main id="main-content">
-                <Routes>
-                    <Route path='/' element={<Home />} />
-                    <Route path='/login' element={<Login />} />
-                    <Route path='/logout' element={<Logout />} />
-                    <Route path='/register' element={
-                        <Suspense fallback={<span>Loading...</span>}>
-                            <Register />
-                        </Suspense>
-                    } />
-                    <Route path='/catalog' element={<Catalog />} />
-                </Routes>
-            </main>
+                <GameProvider>
+                    <main id="main-content">
+                        <Routes>
+                            <Route path='/' element={<Home />} />
+                            <Route path='/login' element={<Login />} />
+                            <Route path='/logout' element={<Logout />} />
+                            <Route path='/register' element={
+                                <Suspense fallback={<span>Loading...</span>}>
+                                    <Register />
+                                </Suspense>
+                            } />
+                            <Route path='/catalog' element={<Catalog />} />
+                            <Route path='/create' element={<CreateGame />} />
+                        </Routes>
+                    </main>
+                </GameProvider>
 
-            <Footer />
+                <Footer />
 
-        </div>
+            </div>
+        </AuthProvider>
     );
 }
 
