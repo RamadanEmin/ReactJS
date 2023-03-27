@@ -11,6 +11,8 @@ const gameReducer = (state, action) => {
             return action.payload.map(x => ({ ...x, comments: [] }));
         case 'ADD_GAME':
             return [...state, action.payload];
+        case 'EDIT_GAME':
+            return state.map(x => x._id === action.gameId ? action.payload : x);
         default:
             return state;
     }
@@ -38,10 +40,19 @@ export const GameProvider = ({
         navigate(`/catalog/${gameData._id}`);
     };
 
+    const editGameHandler = (gameId, gameData) => {
+        dispatch({
+            type: 'EDIT_GAME',
+            payload: gameData,
+            gameId
+        });
+    };
+
     return (
         <GameContext.Provider value={{
             games,
-            addGameHandler
+            addGameHandler,
+            editGameHandler
         }}>
             {children}
         </GameContext.Provider>
