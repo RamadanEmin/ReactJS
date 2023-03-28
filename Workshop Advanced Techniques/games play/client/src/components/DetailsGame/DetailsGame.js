@@ -1,13 +1,15 @@
 import { useContext, useEffect } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 
+import Comment from './Comment/Comment';
 import * as gameService from '../../services/gameService';
+import * as commentService from '../../services/commentService';
 import { GameContext } from '../../contexts/GameContext';
 import { useAuthContext } from '../../contexts/AuthContext';
 
 const DetailsGame = () => {
     const { gameId } = useParams();
-    const { fetchGameDetails, selectGame, removeGameHandler } = useContext(GameContext);
+    const { addComment, fetchGameDetails, selectGame, removeGameHandler } = useContext(GameContext);
     const { user } = useAuthContext();
     const navigate = useNavigate();
 
@@ -18,10 +20,25 @@ const DetailsGame = () => {
     useEffect(() => {
         (async () => {
             const gameDetails = await gameService.getById(gameId);
+            const gameComments = await commentService.getByGameId(gameId);
 
             fetchGameDetails(gameId, { ...gameDetails, comments: gameComments.map(c => `${c.user.email}:${c.text}`) });
         })();
     }, []);
+
+    const addCommentHandler = (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(e.target);
+        const comment = formData.get('comment');
+
+        commentService.create(gameId, comment)
+            .then(() => {
+                addComment(gameId, comment);
+            });
+
+        e.target.comment.value = '';
+    };
 
     const gameDeleteHandler = () => {
         const confirmation = window.confirm('Are you sure you want to delete this game?');
