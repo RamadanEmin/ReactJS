@@ -12,7 +12,10 @@ const gameReducer = (state, action) => {
         case 'ADD_GAME':
             return [...state, action.payload];
         case 'EDIT_GAME':
+        case 'FETCH_GAME_DETAILS':
             return state.map(x => x._id === action.gameId ? action.payload : x);
+        case 'REMOVE_GAME':
+            return state.filter(x => x._id !== action.gameId);
         default:
             return state;
     }
@@ -32,6 +35,18 @@ export const GameProvider = ({
             }));
     }, []);
 
+    const fetchGameDetails = (gameId, gameData) => {
+        dispatch({
+            type: 'FETCH_GAME_DETAILS',
+            payload: gameData,
+            gameId
+        });
+    };
+
+    const selectGame = (gameId) => {
+        return games.find(g => g._id === gameId) || {};
+    };
+
     const addGameHandler = (gameData) => {
         dispatch({
             type: 'ADD_GAME',
@@ -48,11 +63,21 @@ export const GameProvider = ({
         });
     };
 
+    const removeGameHandler = (gameId) => {
+        dispatch({
+            type: 'REMOVE_GAME',
+            gameId
+        });
+    };
+
     return (
         <GameContext.Provider value={{
             games,
             addGameHandler,
-            editGameHandler
+            editGameHandler,
+            fetchGameDetails,
+            selectGame,
+            removeGameHandler
         }}>
             {children}
         </GameContext.Provider>
