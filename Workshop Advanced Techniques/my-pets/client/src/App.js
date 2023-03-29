@@ -1,10 +1,12 @@
 import { Routes, Route } from 'react-router-dom';
 
+import { AuthProvider } from './contexts/AuthContext';
 import Dashboard from './components/Dashboard';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
+      <AuthProvider>
           <div id="container">
 
             <main id="site-content">
@@ -17,6 +19,7 @@ function App() {
               <p>@PetMyPet</p>
             </footer>
           </div>
+      </AuthProvider>
   );
 }
 
