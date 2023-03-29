@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 
 import * as petService from '../../services/petService';
 
+import PetList from '../PetList';
 import './Dashboard.css';
 
 const Dashboard = () => {
@@ -28,5 +29,7 @@ const Dashboard = () => {
         
     );
 }
+
+// export const PrivateDashboard = isAuth(Dashboard)
 
 export default Dashboard;
