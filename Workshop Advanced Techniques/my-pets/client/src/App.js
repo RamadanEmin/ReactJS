@@ -9,6 +9,7 @@ import Register from './components/Register';
 import MyPets from './components/MyPets';
 import Create from './components/Create';
 import Edit from './components/Edit';
+import Details from './components/Details';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
             <Route path="/logout" element={<Logout />} />
             <Route path="/register" element={<Register />} />
             <Route path="/my-pets" element={<MyPets />} />
+            <Route path="/details/:petId" element={<Details />} />
             <Route path="/create" element={<Create />} />
             <Route path="/edit/:petId" element={<Edit />} />
           </Routes>
