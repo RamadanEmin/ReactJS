@@ -18,3 +18,10 @@ export const create = async (petData, token) => {
 
     return result;
 };
+
+export const update = (petId, petData) => request.put(`${baseUrl}/pets/${petId}`, petData);
+
+export const getOne = (petId, signal) => {
+    return fetch(`${baseUrl}/pets/${petId}`, { signal })
+        .then(res => res.json())
+};
