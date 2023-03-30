@@ -4,6 +4,7 @@ import { useParams, useNavigate, Link } from 'react-router-dom';
 import * as petService from '../../services/petService';
 import * as likeService from '../../services/likeService';
 import { useAuthContext } from '../../contexts/AuthContext';
+import { useNotificationContext, types } from '../../contexts/NotificationContext';
 import usePetState from '../../hooks/usePetState';
 
 import { Button } from 'react-bootstrap';
@@ -12,6 +13,7 @@ import ConfirmDialog from '../Common/ConfirmDialog';
 const Details = () => {
     const navigate = useNavigate();
     const { user } = useAuthContext();
+    const { addNotification } = useNotificationContext();
     const { petId } = useParams();
     const [pet, setPet] = usePetState(petId);
     const [showDeleteDialog, setShowDeleteDialog] = useState(false);
@@ -54,12 +56,15 @@ const Details = () => {
         }
 
         if (pet.likes.includes(user._id)) {
+            addNotification('You cannot like again')
             return;
         }
 
         likeService.like(user._id, petId)
             .then(() => {
                 setPet(state => ({...state, likes: [...state.likes, user._id]}));
+
+                addNotification('Successfuly liked a cat :)', types.success);
             });
     };
 
