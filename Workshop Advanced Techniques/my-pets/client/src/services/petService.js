@@ -31,3 +31,14 @@ export const getOne = (petId, signal) => {
     return fetch(`${baseUrl}/pets/${petId}`, { signal })
         .then(res => res.json())
 };
+
+export const like = (petId, pet, token) => {
+    return fetch(`${baseUrl}/pets/${petId}`, {
+        method: 'PUT',
+        headers: {
+            'content-type': 'application/json',
+            'X-Authorization': token
+        },
+        body: JSON.stringify(pet)
+    }).then(res => res.json());
+};
