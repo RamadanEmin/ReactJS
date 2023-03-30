@@ -32,6 +32,15 @@ export const getOne = (petId, signal) => {
         .then(res => res.json())
 };
 
+export const destroy = (petId, token) => {
+    return fetch(`${baseUrl}/pets/${petId}`, {
+        method: 'DELETE',
+        headers: {
+            'X-Authorization': token
+        }
+    }).then(res => res.json());
+};
+
 export const like = (petId, pet, token) => {
     return fetch(`${baseUrl}/pets/${petId}`, {
         method: 'PUT',

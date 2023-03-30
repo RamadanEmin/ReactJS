@@ -35,7 +35,7 @@ function App() {
           <p>@PetMyPet</p>
         </footer>
       </div>
-    </AuthProvider>
+    </AuthProvider >
   );
 }
 

@@ -1,16 +1,20 @@
-import { useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 
+import * as petService from '../../services/petService';
 import * as likeService from '../../services/likeService';
 import { useAuthContext } from '../../contexts/AuthContext';
 import usePetState from '../../hooks/usePetState';
 
 import { Button } from 'react-bootstrap';
+import ConfirmDialog from '../Common/ConfirmDialog';
 
 const Details = () => {
+    const navigate = useNavigate();
     const { user } = useAuthContext();
     const { petId } = useParams();
     const [pet, setPet] = usePetState(petId);
+    const [showDeleteDialog, setShowDeleteDialog] = useState(false);
 
     useEffect(() => {
         likeService.getPetLikes(petId)
@@ -19,10 +23,28 @@ const Details = () => {
             })
     }, []);
 
+    const deleteHandler = (e) => {
+        e.preventDefault();
+
+        petService.destroy(petId, user.accessToken)
+            .then(() => {
+                navigate('/dashboard');
+            })
+            .finally(() => {
+                setShowDeleteDialog(false);
+            });
+    };
+
+    const deleteClickHandler = (e) => {
+        e.preventDefault();
+        console.log(process.env.NODE_ENV);
+        setShowDeleteDialog(true);
+    }
+
     const ownerButtons = (
         <>
             <Link className="button" to={`/edit/${pet._id}`}>Edit</Link>
-            <a className="button" href="#" >Delete</a>
+            <a className="button" href="#" onClick={deleteClickHandler}>Delete</a>
         </>
     );
 
@@ -32,15 +54,12 @@ const Details = () => {
         }
 
         if (pet.likes.includes(user._id)) {
-            addNotification('You cannot like again')
             return;
         }
 
         likeService.like(user._id, petId)
             .then(() => {
                 setPet(state => ({...state, likes: [...state.likes, user._id]}));
-
-                addNotification('Successfuly liked a cat :)', types.success);
             });
     };
 
@@ -48,6 +67,7 @@ const Details = () => {
 
     return (
         <>
+            <ConfirmDialog show={showDeleteDialog} onClose={() => setShowDeleteDialog(false)} onSave={deleteHandler} />
             <section id="details-page" className="details">
                 <div className="pet-information">
                     <h3>Name: {pet.name}</h3>
