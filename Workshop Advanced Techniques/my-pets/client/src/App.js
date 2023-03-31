@@ -12,36 +12,40 @@ import Create from './components/Create';
 import Edit from './components/Edit';
 import Details from './components/Details';
 import Notification from './components/Common/Notification';
+import GuardedRoute from './components/Common/GuardedRoute';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
-    <AuthProvider>
-      <NotificationProvider>
-        <div id="container">
-          <Header />
+      <AuthProvider>
+        <NotificationProvider>
+          <div id="container">
+            <Header />
 
-          <Notification />
+            <Notification />
 
-          <main id="site-content">
-            <Routes>
-              <Route path="/dashboard/*" element={<Dashboard />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/logout" element={<Logout />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="/my-pets" element={<MyPets />} />
-              <Route path="/details/:petId" element={<Details />} />
-              <Route path="/create" element={<Create />} />
-              <Route path="/edit/:petId" element={<Edit />} />
-            </Routes>
-          </main>
+            <main id="site-content">
+              <Routes>
+                <Route path="/dashboard/*" element={<Dashboard />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/logout" element={<Logout />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/my-pets" element={<MyPets />} />
+                <Route path="/details/:petId" element={<Details />} />
 
-          <footer id="site-footer">
-            <p>@PetMyPet</p>
-          </footer>
-        </div>
-      </NotificationProvider>
-    </AuthProvider>
+                <Route element={<GuardedRoute />}>
+                  <Route path="/create" element={<Create />} />
+                  <Route path="/edit/:petId" element={<Edit />} />
+                </Route>
+              </Routes>
+            </main>
+
+            <footer id="site-footer">
+              <p>@PetMyPet</p>
+            </footer>
+          </div>
+        </NotificationProvider>
+      </AuthProvider>
   );
 }
 
