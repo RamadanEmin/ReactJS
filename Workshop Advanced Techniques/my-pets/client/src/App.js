@@ -12,12 +12,14 @@ import Create from './components/Create';
 import Edit from './components/Edit';
 import Details from './components/Details';
 import Notification from './components/Common/Notification';
+import ErrorBoundary from './components/Common/ErrorBoundary';
 import PrivateRoute from './components/Common/PrivateRoute';
 import GuardedRoute from './components/Common/GuardedRoute';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
+    <ErrorBoundary>
       <AuthProvider>
         <NotificationProvider>
           <div id="container">
@@ -47,6 +49,7 @@ function App() {
           </div>
         </NotificationProvider>
       </AuthProvider>
+    </ErrorBoundary>
   );
 }
 
